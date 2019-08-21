@@ -44,7 +44,7 @@ public class Book {
 
     @Override
     public String toString(){
-        return this.id + "\t" +this.title + "\t" + this.author+ "\t" +  this.year ;
+        return "#"+this.id + "\t" +this.title + "\t" + this.author+ "\t" +  this.year ;
     }
 
 
