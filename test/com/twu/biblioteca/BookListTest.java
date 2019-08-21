@@ -3,9 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Test;
 import org.junit.Before;
 
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertTrue;
-
+import static junit.framework.TestCase.*;
 
 
 public class BookListTest {
@@ -40,24 +38,46 @@ public class BookListTest {
     @Test
     public void testCheckoutBooks () {
 
-        bookList.checkoutBook(1);
+        String ouputString = bookList.checkoutBook(1);
         String bookListString = bookList.showBooks();
         assertFalse(bookListString.contains("Ulysses"));
+        assertTrue(ouputString.contains("Success"));
     }
 
-    
+    @Test
+    public void shouldNotBeAbleToCheckoutBooksWithInvalidIDs () {
+        String ouputString = bookList.checkoutBook(-1);
+        assertTrue(ouputString.contains("Unable to checkout"));
+    }
 
     @Test
-    public void testReturnBooks () {
+    public void shouldReturnValidBooks () {
         bookList.checkoutBook(1);
         String bookListString = bookList.showBooks();
         assertFalse(bookListString.contains("Ulysses"));
 
-        bookList.returnBook(1);
+        String ouputString = bookList.returnBook(1);
         bookListString = bookList.showBooks();
         assertTrue(bookListString.contains("Ulysses"));
 
+        assertTrue(ouputString.contains("Successfully Returned"));
+
     }
+
+    @Test
+    public void shouldNotReturnValidBooks () {
+        bookList.checkoutBook(1);
+        String bookListString = bookList.showBooks();
+        assertFalse(bookListString.contains("Ulysses"));
+
+        String ouputString = bookList.returnBook(-1);
+        bookListString = bookList.showBooks();
+        assertFalse(bookListString.contains("Ulysses"));
+
+        assertTrue(ouputString.contains("Unable to Return"));
+
+    }
+
 
 
 }

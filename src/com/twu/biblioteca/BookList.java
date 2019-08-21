@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class BookList {
 
     public String checkoutBook(int id) {
         for(Book book: this.bookCatalogue){
-            if(book.getId() == id) {
+            if(book.getId() == id && book.isAvailable() ==true) {
                book.checkOut();
                return "Success Book " + id + "checked out" ;
             }
@@ -32,13 +31,13 @@ public class BookList {
         return "Unable to checkout book " + id;
     }
 
-    public boolean returnBook(int id) {
+    public String returnBook(int id) {
         for(Book book: this.bookCatalogue){
-            if(book.getId() == id) {
+            if(book.getId() == id && book.isAvailable() ==false) {
                 book.returnBook();
-                return true;
+                return "Successfully Returned Book" + id;
             }
         }
-        return false;
+        return "Unable to Return book " + id;
     }
 }
