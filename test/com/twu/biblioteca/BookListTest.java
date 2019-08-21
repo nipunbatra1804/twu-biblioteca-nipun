@@ -20,7 +20,6 @@ public class BookListTest {
     @Before
     public void addBooksForTest(){
 
-
         bookList.addBook( 1,"Ulysses","James Joyce", 1922);
         bookList.addBook( 2,"The Great Gatsby", "F. Scott Fitzgerald", 1925);
         bookList.addBook( 3,"Lolita", "Vladimir Nabokov", 1955);
@@ -45,6 +44,8 @@ public class BookListTest {
         String bookListString = bookList.showBooks();
         assertFalse(bookListString.contains("Ulysses"));
     }
+
+    
 
     @Test
     public void testReturnBooks () {

@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class MenuTest {
     @Test
@@ -34,8 +35,31 @@ public class MenuTest {
         Output output = Menu.execute("1");
         assertEquals(output.isExit(), false);
         assertTrue(output.message().contains("Ulysses"));
-
-
     }
+
+    @Test
+    public void shouldReceiveSuccessMessageOnCheckoutOfBooks() {
+        Menu menu = new Menu();
+        BookList bookList = new BookList();
+        bookList.addBook( 1,"Ulysses","James Joyce", 1922);
+        Menu.addBookList(bookList);
+
+        Output output = Menu.execute("2 1");
+        assertEquals(output.isExit(), false);
+        assertTrue(output.message().contains("Success"));
+    }
+
+    @Test
+    public void shouldReceiveFailureMessageOnCheckoutOfBooks() {
+        Menu menu = new Menu();
+        BookList bookList = new BookList();
+        bookList.addBook( 1,"Ulysses","James Joyce", 1922);
+        Menu.addBookList(bookList);
+
+        Output output = Menu.execute("2 3");
+        assertEquals(output.isExit(), false);
+        assertTrue(output.message().contains("Unable"));
+    }
+
 
 }

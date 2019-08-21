@@ -22,14 +22,14 @@ public class BookList {
     }
 
 
-    public boolean checkoutBook(int id) {
+    public String checkoutBook(int id) {
         for(Book book: this.bookCatalogue){
             if(book.getId() == id) {
                book.checkOut();
-               return true;
+               return "Success Book " + id + "checked out" ;
             }
         }
-        return false;
+        return "Unable to checkout book " + id;
     }
 
     public boolean returnBook(int id) {
