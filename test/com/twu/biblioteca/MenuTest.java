@@ -120,5 +120,49 @@ public class MenuTest {
     }
 
 
+    @Test
+    public void shouldDisplayAListOfMovies() {
+        Menu menu = new Menu();
+        MovieList movieList = new MovieList();
+        movieList.addMovie( 110,"The Godfather","Coppola", 1972);
+        Menu.addMovieList(movieList);
+
+        Output output = Menu.execute("4");
+        assertEquals(output.isExit(), false);
+        assertTrue(output.message().contains("The Godfather"));
+    }
+
+
+    @Test
+    public void shouldReceiveSuccessMessageOnCheckoutOfMovies() {
+        Menu menu = new Menu();
+        MovieList movieList = new MovieList();
+        movieList.addMovie( 110,"The Godfather","Coppola", 1972);
+        Menu.addMovieList(movieList);
+
+
+        Output output = Menu.execute("5 110");
+        assertEquals(output.isExit(), false);
+        assertTrue(output.message().contains("Success"));
+    }
+
+    @Test
+    public void shouldReceiveFailureMessageOnCheckoutOfMovies() {
+        Menu menu = new Menu();
+        MovieList movieList = new MovieList();
+        movieList.addMovie( 110,"The Godfather","Coppola", 1972);
+        Menu.addMovieList(movieList);
+
+
+
+        Output output = Menu.execute("5 3");
+        assertEquals(output.isExit(), false);
+        assertTrue(output.message().contains("Unable"));
+    }
+
+
+
+
+
 
 }

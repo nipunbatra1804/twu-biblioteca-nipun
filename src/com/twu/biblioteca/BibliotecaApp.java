@@ -6,6 +6,7 @@ public class BibliotecaApp {
 
     private Scanner input = new Scanner(System.in);
     private BookList bookList = new BookList();
+    private MovieList movieList = new MovieList();
 
     public String startApp() {
 
@@ -13,6 +14,10 @@ public class BibliotecaApp {
         bookList.addBook( 2,"The Great Gatsby", "F. Scott Fitzgerald", 1925);
         bookList.addBook( 3,"Lolita", "Vladimir Nabokov", 1955);
         Menu.addBookList(bookList);
+
+        movieList.addMovie(110,"The Godfather","Coppola", 1972);
+
+        Menu.addMovieList(movieList);
 
         return ("Welcome to Biblioteca, Your one-stop-shop for great Book titles in Bangalore");
     }

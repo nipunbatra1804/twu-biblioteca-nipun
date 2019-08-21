@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookList {
+class BookList {
 
     private List<Book> bookCatalogue= new ArrayList<Book>();
     public void addBook(int id, String title, String author, int year) {
@@ -34,7 +34,7 @@ public class BookList {
     public String returnBook(int id) {
         for(Book book: this.bookCatalogue){
             if(book.getId() == id && book.isAvailable() ==false) {
-                book.returnBook();
+                book.returnItem();
                 return "Successfully Returned Book" + id;
             }
         }
