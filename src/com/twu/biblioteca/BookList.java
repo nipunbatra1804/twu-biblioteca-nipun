@@ -21,17 +21,27 @@ class BookList {
     }
 
 
-    public String checkoutBook(int id) {
+    public String checkoutBook(int id, User currentUser) {
+        if(currentUser == null){
+            return "Unable to checkout book " + id + "\n Not Logged In";
+        }
+
         for(Book book: this.bookCatalogue){
             if(book.getId() == id && book.isAvailable() ==true) {
                book.checkOut();
+               currentUser.checkoutItem(book);
                return "Success Book " + id + "checked out" ;
             }
         }
         return "Unable to checkout book " + id;
     }
 
-    public String returnBook(int id) {
+    public String returnBook(int id, User currentUser) {
+
+        if(currentUser == null){
+            return "Unable to Return book " + id + "\n Not Logged In";
+        }
+
         for(Book book: this.bookCatalogue){
             if(book.getId() == id && book.isAvailable() ==false) {
                 book.returnItem();

@@ -7,17 +7,19 @@ public class BibliotecaApp {
     private Scanner input = new Scanner(System.in);
     private BookList bookList = new BookList();
     private MovieList movieList = new MovieList();
+    private UserList userList = new UserList();
+    private Menu menu = new Menu();
+    private User currentUser;
+
 
     public String startApp() {
 
         bookList.addBook( 1,"Ulysses","James Joyce", 1922);
         bookList.addBook( 2,"The Great Gatsby", "F. Scott Fitzgerald", 1925);
         bookList.addBook( 3,"Lolita", "Vladimir Nabokov", 1955);
-        Menu.addBookList(bookList);
-
+        menu.addBookList(bookList);
         movieList.addMovie(110,"The Godfather","Coppola", 1972);
-
-        Menu.addMovieList(movieList);
+        menu.addMovieList(movieList);
 
         return ("Welcome to Biblioteca, Your one-stop-shop for great Book titles in Bangalore");
     }
@@ -29,9 +31,9 @@ public class BibliotecaApp {
     public void runApp() {
         boolean exitApp = true;
         do {
-            System.out.println(Menu.showMenu());
+            System.out.println(menu.showMenu());
             String command = getInput();
-            Output outputObj = Menu.execute(command);
+            Output outputObj = menu.execute(command);
             exitApp  = outputObj.isExit();
             System.out.println(outputObj.message());
         } while(exitApp != true);
